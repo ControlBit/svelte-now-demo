@@ -57,4 +57,4 @@ workflows:
     - deploy_dev
   build_and_deploy_prod:
     - build
-    -deploy_prod
+    - deploy_prod
