@@ -48,13 +48,13 @@ jobs:
       
       # deploy
       - run: npx now --token ${NowCLI} --scope=controlbit --target production
-  
-
 workflows:
   version: 2
   build_and_deploy_dev:
-    - build
-    - deploy_dev
+    jobs:
+      - build
+      - deploy_dev
   build_and_deploy_prod:
-    - build
-    - deploy_prod
+    jobs:
+      - build
+      - deploy_prod
