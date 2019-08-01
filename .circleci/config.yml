@@ -52,12 +52,10 @@ workflows:
           - build
         filters:
           branches:
-            only: 
-              - develop
+            only: develop
       - deploy_prod
         requires:
           - build
         filters:
           branches:
-            only:
-              - master
+            only: master
