@@ -36,9 +36,9 @@ jobs:
     working_directory: ~/svelte-demo
 
     steps:
-      # deploy
+      # deploy develop
       - checkout
-      - run: npx now --token ${NowCLI} --scope=controlbit --name svelte-develop
+      - run: npx now --token ${NowCLI} --scope=controlbit --target production --name svelte-develop
   deploy_prod:
     docker:
       - image: circleci/node:12.1
@@ -46,7 +46,7 @@ jobs:
     working_directory: ~/svelte-demo
 
     steps:
-      # deploy
+      # deploy production
       - checkout
       - run: npx now --token ${NowCLI} --scope=controlbit --target production --name svelte-production
 workflows:
