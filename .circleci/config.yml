@@ -48,13 +48,13 @@ workflows:
     jobs:
       - build
       - deploy_dev
-        requires:
+        requires: 
           - build
         filters:
           branches:
             only: develop
       - deploy_prod
-        requires:
+        requires: 
           - build
         filters:
           branches:
