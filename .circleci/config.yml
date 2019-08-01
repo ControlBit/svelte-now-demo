@@ -5,7 +5,7 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:12.1
 
-    working_directory: ~/now_production
+    working_directory: ~/svelte-demo
 
     steps:
       - checkout
@@ -24,21 +24,30 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      # build
+      - run: npm run build
+
       # run tests!
       - run: npm test
   deploy_dev:
     docker:
       - image: circleci/node:12.1
 
+    working_directory: ~/svelte-demo
+
     steps:
       # deploy
+      - checkout
       - run: npx now --token ${NowCLI} --scope=controlbit
   deploy_prod:
     docker:
       - image: circleci/node:12.1
 
+    working_directory: ~/svelte-demo
+
     steps:
       # deploy
+      - checkout
       - run: npx now --token ${NowCLI} --scope=controlbit --target production
 workflows:
   version: 2
