@@ -31,7 +31,6 @@ jobs:
       - image: circleci/node:12.1
 
     steps:
-      
       # deploy
       - run: npx now --token ${NowCLI} --scope=controlbit
   deploy_prod:
@@ -39,22 +38,21 @@ jobs:
       - image: circleci/node:12.1
 
     steps:
-      
       # deploy
       - run: npx now --token ${NowCLI} --scope=controlbit --target production
 workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - build
-      - deploy_dev
-        requires: 
+    - build
+    - deploy_dev:
+        requires:
           - build
         filters:
           branches:
             only: develop
-      - deploy_prod
-        requires: 
+    - deploy_prod:
+        requires:
           - build
         filters:
           branches:
