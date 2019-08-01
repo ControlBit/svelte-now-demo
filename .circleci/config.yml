@@ -26,6 +26,35 @@ jobs:
 
       # run tests!
       - run: npm test
+  deploy_dev:
+    filters:
+      branches:
+        only: /develop/
+    docker:
+      - image: circleci/node:12.1
 
+    steps:
+      
+      # deploy
+      - run: npx now --token ${NowCLI} --scope=controlbit
+  deploy_prod:
+    filters:
+      branches:
+        only: /master/
+    docker:
+      - image: circleci/node:12.1
+
+    steps:
+      
       # deploy
       - run: npx now --token ${NowCLI} --scope=controlbit --target production
+  
+
+workflows:
+  version: 2
+  build_and_deploy_dev:
+    - build
+    - deploy_dev
+  build_and_deploy_prod:
+    - build
+    -deploy_prod
