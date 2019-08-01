@@ -19,4 +19,4 @@
   }
 </style>
 
-<h1>Hello! The time is currently: {time}</h1>
+<h1>The time is currently: {time}</h1>
